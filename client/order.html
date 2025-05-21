@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Delivery Page Layout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #f9fafb;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            padding: 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            color: #374151;
+            gap: 0.5rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .header-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: none;
+            border: none;
+            color: #374151;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        main {
+            padding: 2rem 1rem;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-button {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 9999px;
+            background: white;
+            color: #374151;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: background-color 0.2s;
+        }
+
+        .filter-button:hover {
+            background-color: #f9fafb;
+        }
+
+        .restaurant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .restaurant-card {
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .restaurant-card:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-container {
+            position: relative;
+            height: 200px;
+        }
+
+        .restaurant-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .offer-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background-color: #ef4444;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+        }
+
+        .restaurant-info {
+            padding: 1rem;
+        }
+
+        .restaurant-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .restaurant-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .rating {
+            color: #10b981;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .time {
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .cuisine {
+            color: #4b5563;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .location-text {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .restaurant-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="location">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span>Pondicherry</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m6 9 6 6 6-6"/>
+                    </svg>
+                </div>
+                <div class="header-actions">
+                    <button class="header-button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                        </svg>
+                        <span>Search</span>
+                    </button>
+                    <button class="header-button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"></path>
+                        </svg>
+                        <span>Filter</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Restaurants with online food delivery in Pondicherry</h1>
+
+        <div class="filters">
+            <button class="filter-button">Sort By</button>
+            <button class="filter-button">Fast Delivery</button>
+            <button class="filter-button">New</button>
+            <button class="filter-button">Ratings 4.0+</button>
+            <button class="filter-button">Pure Veg</button>
+            <button class="filter-button">Offers</button>
+            <button class="filter-button">₹300-₹600</button>
+            <button class="filter-button">Less than ₹300</button>
+        </div>
+
+        <div class="restaurant-grid">
+            <div class="restaurant-card">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="The Biryani Life" class="restaurant-image">
+                    <div class="offer-badge">ITEMS AT ₹159</div>
+                </div>
+                <div class="restaurant-info">
+                    <a style="text-decoration: none; color: black;" href="restaurants.html"><h3 class="restaurant-name">The Biryani Life</h3></a>
+                    <div class="restaurant-meta">
+                        <span class="rating">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            4.2
+                        </span>
+                        <span>•</span>
+                        <span class="time">30-35 mins</span>
+                    </div>
+                    <p class="cuisine">Biryani, Mughlai, North Indian</p>
+                    <p class="location-text">Heritage Town</p>
+                </div>
+            </div>
+
+            <div class="restaurant-card">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Biryani Brothers" class="restaurant-image">
+                    <div class="offer-badge">₹75 OFF ABOVE ₹199</div>
+                </div>
+                <div class="restaurant-info">
+                   <a style="text-decoration: none; color: black;" href="restaurants.html"><h3 class="restaurant-name">Biryani Brothers</h3></a>
+                    <div class="restaurant-meta">
+                        <span class="rating">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            4.4
+                        </span>
+                        <span>•</span>
+                        <span class="time">30-35 mins</span>
+                    </div>
+                    <p class="cuisine">Indian, Biryani</p>
+                    <p class="location-text">Central District</p>
+                </div>
+            </div>
+
+            <div class="restaurant-card">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Frozen Bottle" class="restaurant-image">
+                    <div class="offer-badge">₹200 OFF ABOVE ₹599</div>
+                </div>
+                <div class="restaurant-info">
+                    <a style="text-decoration: none; color: black;" href="restaurants.html"><h3 class="restaurant-name">Frozen Bottle</h3></a>
+                    <div class="restaurant-meta">
+                        <span class="rating">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            4.2
+                        </span>
+                        <span>•</span>
+                        <span class="time">30-35 mins</span>
+                    </div>
+                    <p class="cuisine">Beverages, Ice Cream, Desserts</p>
+                    <p class="location-text">Beach Road</p>
+                </div>
+            </div>
+
+            <div class="restaurant-card">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Urban Kitchen" class="restaurant-image">
+                    <div class="offer-badge">ITEMS AT ₹89</div>
+                </div>
+                <div class="restaurant-info">
+                    <h3 class="restaurant-name">Urban Kitchen</h3>
+                    <div class="restaurant-meta">
+                        <span class="rating">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            4.3
+                        </span>
+                        <span>•</span>
+                        <span class="time">20-25 mins</span>
+                    </div>
+                    <p class="cuisine">Burgers, Fast Food, Rolls & Wraps</p>
+                    <p class="location-text">White Town</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

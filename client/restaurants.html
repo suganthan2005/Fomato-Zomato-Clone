@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Biryani Life - Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #1f2937;
+            line-height: 1.5;
+        }
+
+        .header {
+            padding: 1.5rem;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .restaurant-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .delivery-time {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .menu-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .veg-indicator {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #22c55e;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        .non-veg-indicator {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ef4444;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        .item-name {
+            font-size: 1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .original-price {
+            color: #6b7280;
+            text-decoration: line-through;
+            font-size: 0.875rem;
+        }
+
+        .discounted-price {
+            font-weight: 500;
+        }
+
+        .description {
+            color: #6b7280;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .item-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 0.5rem;
+            object-fit: cover;
+        }
+
+        .add-button, .remove-button {
+            background-color: white;
+            border: 1px solid #22c55e;
+            color: #22c55e;
+            padding: 0.5rem 2rem;
+            border-radius: 0.25rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .add-button:hover, .remove-button:hover {
+            background-color: #f0fdf4;
+        }
+
+        .remove-button {
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+
+        .cart {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cart-count {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #22c55e;
+        }
+
+        @media (max-width: 640px) {
+            .menu-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .item-image {
+                width: 100%;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="restaurant-name">The Biryani Life</h1>
+            <p class="delivery-time">30-35 mins</p>
+        </div>
+    </header>
+
+    <!-- Cart Section -->
+    <div class="cart">
+        <span>Cart:</span>
+        <span class="cart-count">0</span>
+    </div>
+
+    <main class="container">
+        <div class="menu-item">
+            <div class="item-details">
+                <h2 class="item-name">
+                    <span class="non-veg-indicator"></span>
+                    Chicken Dum Biryani Mealbox
+                </h2>
+                <div class="price">
+                    <span class="original-price">₹429</span>
+                    <span class="discounted-price">₹329</span>
+                </div>
+                <p class="description">
+                    A grand feast featuring Chicken Dum Biryani, cooling Mint Raita, rich Mutton Haleem, 2 soft Kulchas, succulent Chicken Tikki Kebabs along with onions and mint chutney
+                </p>
+                <button class="add-button">ADD</button>
+                <button class="remove-button">REMOVE</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Chicken Dum Biryani" class="item-image">
+        </div>
+
+        <!-- Repeat similar structure for other menu items -->
+    </main>
+
+    <script>
+        // JavaScript to handle cart functionality
+        document.addEventListener("DOMContentLoaded", () => {
+            const cartCountElement = document.querySelector(".cart-count");
+            let cartCount = 0;
+
+            // Handle Add Button Click
+            document.querySelectorAll(".add-button").forEach((button) => {
+                button.addEventListener("click", () => {
+                    cartCount++;
+                    cartCountElement.textContent = cartCount;
+                });
+            });
+
+            // Handle Remove Button Click
+            document.querySelectorAll(".remove-button").forEach((button) => {
+                button.addEventListener("click", () => {
+                    if (cartCount > 0) {
+                        cartCount--;
+                        cartCountElement.textContent = cartCount;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
